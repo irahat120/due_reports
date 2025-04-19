@@ -7,6 +7,11 @@
 
 @section('content')
 <div class="alert alert-light mt-3" role="alert">
+
+    @if (session('success'))
+        <p class="text-success">{{ session('success') }}</p>
+        
+    @endif
     <h5>Add Student</h5>
 
     <form method="POST" action="{{route('insert_student')}}">
@@ -22,11 +27,11 @@
             <div class="form-group col-md-6 p-2">
                 <label for="exampleInputEmail2">Gender</label> <br>
                 <div class="form-check form-check-inline">
-                    <input class="form-check-input" type="radio" name="Gender" id="inlineRadio1" value="Male">
+                    <input class="form-check-input" type="radio" name="gender" id="inlineRadio1" value="Male">
                     <label class="form-check-label" for="inlineRadio1">Male</label>
                 </div> 
                 <div class="form-check form-check-inline">
-                    <input class="form-check-input" type="radio" name="Gender" id="inlineRadio2" value="Female">
+                    <input class="form-check-input" type="radio" name="gender" id="inlineRadio2" value="Female">
                     <label class="form-check-label" for="inlineRadio2">Female</label>
                 </div>
             </div>

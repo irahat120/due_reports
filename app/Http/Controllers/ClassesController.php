@@ -52,9 +52,25 @@ class ClassesController extends Controller
     
     public function insert_student_information(Request $request) {
         
-        return $request->all();
-        // $insert_student_info = new student_info;
-        // $insert_student_info->all();
+
+        $auto_generate_Number = rand(100,1000);
+        // return $request->all();
+        $insert_student_info = new student_info;
+        $insert_student_info->s_name = $request->s_name;
+        $insert_student_info->u_registration_number  = $auto_generate_Number;
+        $insert_student_info->gender = $request->gender;
+        $insert_student_info->phone = $request->phone_number;
+        $insert_student_info->class_name = $request->class_name;
+        $insert_student_info->batch_name = $request->branch_name;
+        $insert_student_info->roll = $request->roll_number;
+        $insert_student_info->father_name = $request->f_name;
+        $insert_student_info->mother_name = $request->m_name;
+
+        $insert_student_info->save();
+
+        return redirect()->route('student_info')->with('success','add student Successfully!');
+
+
 
 
 
