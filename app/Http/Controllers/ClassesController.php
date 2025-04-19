@@ -70,10 +70,6 @@ class ClassesController extends Controller
 
         return redirect()->route('student_info')->with('success','add student Successfully!');
 
-
-
-
-
     }
 
 }
