@@ -4,14 +4,20 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ClassesController;
 use App\Models\add_batch;
 use App\Models\add_class;
+use App\Models\student_info;
 
 Route::get('/', function () {
     return view('welcome');
 })->name('home');
 
 Route::get('/student', function () {
-    return view('student_info',['view_class' => add_class::all()],['view_batch' => add_batch::all()]);
+    return view('student_info',['view_class' => add_class::all()],['view_batch' => add_batch::all()],['view_student' => student_info::all()]);
 })->name('student_info');
+
+Route::get('/view_student',function(){
+    return view('view_student',['view_student' => student_info::all()]);
+})->name('student_list');
+
 
 Route::get('/addclasses', function () {
     return view('addclass',['view_class' => add_class::all()]);

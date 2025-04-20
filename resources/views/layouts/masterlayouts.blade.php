@@ -23,12 +23,13 @@
                             <a class="nav-link active" aria-current="page" href="{{route('home')}}">Home</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="{{route('student_info')}}">Student</a>
+                            <a class="nav-link" href="{{route('student_list')}}">Student list</a>
                         </li>
                         
                     </ul>
                     <div class="d-grid gap-2 d-md-flex justify-content-md-end">
-                        <a class="btn btn-primary me-md-2" href="{{route('add_class')}}">Add Class</a>
+                        <a class="btn btn-info me-md-2" href="{{route('student_info')}}">Add Student</a>
+                        <a class="btn btn-success me-md-2" href="{{route('add_class')}}">Add Class</a>
                         <a class="btn btn-primary me-md-2" href="{{route('add_batch')}}">Add Batch</a>
                       </div>
                 </div>
