@@ -11,7 +11,12 @@ Route::get('/', function () {
 })->name('home');
 
 Route::get('/student', function () {
-    return view('student_info',['view_class' => add_class::all()],['view_batch' => add_batch::all()],['view_student' => student_info::all()]);
+    return view
+    (
+        'student_info',
+        ['view_class' => add_class::all()],
+        ['view_batch' => add_batch::all()]
+    );
 })->name('student_info');
 
 Route::get('/view_student',function(){
@@ -37,7 +42,13 @@ Route::get('/edit_batch_name/{id}',function(string $id){
 
 
 
-Route::Post('/insert_class', [ClassesController::class, 'class_insert'])->name('class_name_insert');
+Route::Post
+(
+    '/insert_class', 
+    [ClassesController::class, 
+    'class_insert']
+)->name('class_name_insert');
+
 Route::Post('/insert_batch', [ClassesController::class, 'batch_insert'])->name('batch_name_insert');
 
 Route::Post('/insert_student', [ClassesController::class, 'insert_student_information'])->name('insert_student');
