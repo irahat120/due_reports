@@ -35,17 +35,19 @@ Route::get('/edit_batch_name/{id}',function(string $id){
 })->name('edit_batch');
 
 
+Route::controller(ClassesController::class)->group(function(){
+    Route::Post('/insert_class','class_insert')->name('class_name_insert');
+    Route::Post('/insert_batch','batch_insert')->name('batch_name_insert');
+    Route::Post('/insert_student','insert_student_information')->name('insert_student');
+    Route::Post('/update_class_name/{id}','update_class_name')->name('update_class');
+    Route::Post('/update_Batch_name/{id}','update_batch_name')->name('update_batch');
+});
 
-Route::Post
-(
-    '/insert_class', 
-    [ClassesController::class, 
-    'class_insert']
-)->name('class_name_insert');
 
-Route::Post('/insert_batch', [ClassesController::class, 'batch_insert'])->name('batch_name_insert');
 
-Route::Post('/insert_student', [ClassesController::class, 'insert_student_information'])->name('insert_student');
-
-Route::Post('/update_class_name/{id}', [ClassesController::class, 'update_class_name'])->name('update_class');
-Route::Post('/update_Batch_name/{id}', [ClassesController::class, 'update_batch_name'])->name('update_batch');
+//Different way
+// Route::Post('/insert_class',[ClassesController::class, 'class_insert'])->name('class_name_insert');
+// Route::Post('/insert_batch', [ClassesController::class, 'batch_insert'])->name('batch_name_insert');
+// Route::Post('/insert_student', [ClassesController::class, 'insert_student_information'])->name('insert_student');
+// Route::Post('/update_class_name/{id}', [ClassesController::class, 'update_class_name'])->name('update_class');
+// Route::Post('/update_Batch_name/{id}', [ClassesController::class, 'update_batch_name'])->name('update_batch');
