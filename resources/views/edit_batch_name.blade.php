@@ -17,7 +17,7 @@
                 <input type="text" name="Batch_name" value="{{$view_batch_name->b_name}}" class="form-control" id="exampleFormControlInput1" placeholder="name@example.com">
             </div>
             <div>
-                <input type="submit" class="btn btn-success" value="Submit">
+                <input type="submit" class="btn btn-success" value="Update Batch">
             </div>
 
         </form>

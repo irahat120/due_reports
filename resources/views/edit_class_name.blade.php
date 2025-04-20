@@ -17,7 +17,7 @@
                 <input type="text" name="class_name" value="{{$view_class_name->c_name}}" class="form-control" id="exampleFormControlInput1" placeholder="name@example.com">
             </div>
             <div>
-                <input type="submit" class="btn btn-success" value="Submit">
+                <input type="submit" class="btn btn-success" value="Update Class">
             </div>
 
         </form>
