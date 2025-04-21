@@ -10,6 +10,15 @@ Route::get('/', function () {
     return view('welcome');
 })->name('home');
 
+
+Route::get('/create-fee', function () {
+    return view('create_fee');
+})->name('create_fee');
+
+Route::get('/blank_page', function () {
+    return view('blank');
+})->name('blank');
+
 Route::get('/student', function () {
     return view('student_info',[
         'view_class' => add_class::all(),

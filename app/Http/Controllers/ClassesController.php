@@ -10,6 +10,11 @@ use Illuminate\Http\Request;
 class ClassesController extends Controller
 {
     public function class_insert(Request $request)  {
+
+
+        $validated = $request->validate([
+            'class_name' => 'required'
+        ]);
        
         $add_class_name = new add_class;
         $add_class_name->c_name = $request->class_name;
@@ -19,6 +24,10 @@ class ClassesController extends Controller
     }
 
     public function batch_insert(Request $request)  {
+
+        $validated = $request->validate([
+            'Batch_name' => 'required'
+        ]);
        
         $add_batch_name = new add_batch;
         $add_batch_name->b_name = $request->Batch_name;
@@ -51,10 +60,22 @@ class ClassesController extends Controller
 
     
     public function insert_student_information(Request $request) {
+
+
+
+        $validated = $request->validate([
+            's_name' => 'required',
+            'gender' => 'required',
+            'phone_number' => 'required',
+            'class_name' => 'required',
+            'branch_name' => 'required',
+            'roll_number' => 'required',
+            'f_name' => 'required',
+            'm_name' => 'required',
+        ]);
         
 
         $auto_generate_Number = rand(100,1000);
-        // return $request->all();
         $insert_student_info = new student_info;
         $insert_student_info->s_name = $request->s_name;
         $insert_student_info->u_registration_number  = $auto_generate_Number;

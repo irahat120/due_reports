@@ -18,6 +18,9 @@
             <div class="mb-3">
                 <label for="exampleFormControlInput1" class="form-label">Class Name</label>
                 <input type="text" name="class_name" class="form-control" id="exampleFormControlInput1" placeholder="Class Name">
+                @error('class_name')
+                    <p class="text-danger">{{ $message }}</p>
+                @enderror
             </div>
             <div>
                 <input type="submit" class="btn btn-success" value="Submit">
