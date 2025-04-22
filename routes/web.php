@@ -19,21 +19,35 @@ Route::get('/blank_page', function () {
     return view('blank');
 })->name('blank');
 
-Route::get('/student', function () {
-    return view('student_info',[
-        'view_class' => add_class::all(),
-        'view_batch' => add_batch::all(),
-        'view_student' => student_info::all()]);
-})->name('student_info');
 
 
-Route::get('/addclasses', function () {
-    return view('addclass',['view_class' => add_class::all()]);
-})->name('add_class');
+Route::controller(ClassesController::class)->group(function(){
 
-Route::get('/addbatches', function () {
-    return view('addbatch', ['view_batch' => add_batch::all()]);
-})->name('add_batch');
+    //view route
+    Route::GET('/student','student_view')->name('student_info');
+    Route::GET('/addclasses','class_view')->name('add_class');
+    Route::GET('/addbatches', 'batch_view')->name('add_batch');
+
+    //Insert route
+    Route::Post('/insert_class','class_insert')->name('class_name_insert');
+    Route::Post('/insert_batch','batch_insert')->name('batch_name_insert');
+    Route::Post('/insert_student','insert_student_information')->name('insert_student');
+    
+    //update route
+    Route::Post('/update_class_name/{id}','update_class_name')->name('update_class');
+    Route::Post('/update_Batch_name/{id}','update_batch_name')->name('update_batch');
+
+});
+
+//alternativ way
+// Route::get('/addbatches', function () {
+//     return view('addbatch', ['view_batch' => add_batch::all()]);
+// })->name('add_batch');
+
+
+
+
+
 
 Route::get('/edit_class_name/{id}',function(string $id){
     return view('edit_class_name',['view_class_name' =>add_class::findOrFail($id)]);
@@ -42,15 +56,6 @@ Route::get('/edit_class_name/{id}',function(string $id){
 Route::get('/edit_batch_name/{id}',function(string $id){
     return view('edit_batch_name',['view_batch_name' =>add_batch::findOrFail($id)]);
 })->name('edit_batch');
-
-
-Route::controller(ClassesController::class)->group(function(){
-    Route::Post('/insert_class','class_insert')->name('class_name_insert');
-    Route::Post('/insert_batch','batch_insert')->name('batch_name_insert');
-    Route::Post('/insert_student','insert_student_information')->name('insert_student');
-    Route::Post('/update_class_name/{id}','update_class_name')->name('update_class');
-    Route::Post('/update_Batch_name/{id}','update_batch_name')->name('update_batch');
-});
 
 
 
