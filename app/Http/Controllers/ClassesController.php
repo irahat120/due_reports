@@ -4,14 +4,37 @@ namespace App\Http\Controllers;
 
 use App\Models\add_batch;
 use App\Models\add_class;
+use App\Models\fees_manage;
 use App\Models\student_info;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
-
 class ClassesController extends Controller
 {
 
     //Insert function start------------------------------------------
+
+    public function insert_fees_manage(Request $request){
+
+        // dd($request->all());
+        $fees_head =  $request->fees_head;
+        $fees_type =  $request->fees_type;
+        $class_name =  $request->class_name;
+        $branch_name =  $request->branch_name;
+        $amount =  $request->amount;
+        $string = $request->ary;
+        foreach($string as $s){
+            $fee = DB::table('fees')
+            ->insert([
+                'fees_head' => $fees_head,
+                'fees_type' => $fees_type,
+                'select_class' => $class_name,
+                'batch_class' => $branch_name,
+                'amount' => $amount,
+                'select_month' =>$s]);
+
+        }
+    }
+
     public function insert_student_information(Request $request) {
 
         $validated = $request->validate([

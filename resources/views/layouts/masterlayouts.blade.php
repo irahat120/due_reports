@@ -34,7 +34,7 @@
                             </a>
                             <ul class="dropdown-menu">
                               <li><a class="dropdown-item" href="{{route('create_fee')}}">Create Fees</a></li>
-                              <li><a class="dropdown-item" href="#">Collection Fees</a></li>
+                              {{-- <li><a class="dropdown-item" href="{{route('create_fee_management')}}">Collection Fees</a></li> --}}
                             </ul>
                         </li>
                         

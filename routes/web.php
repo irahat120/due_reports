@@ -12,7 +12,7 @@ Route::get('/', function () {
 
 
 Route::get('/create-fee', function () {
-    return view('create_fee');
+    return view('create_fee',['view_class' => add_class::all(),'view_batch' => add_batch::all()]);
 })->name('create_fee');
 
 Route::get('/blank_page', function () {
@@ -28,10 +28,13 @@ Route::controller(ClassesController::class)->group(function(){
     Route::GET('/addclasses','class_view')->name('add_class');
     Route::GET('/addbatches', 'batch_view')->name('add_batch');
 
+
+
     //Insert route
     Route::Post('/insert_class','class_insert')->name('class_name_insert');
     Route::Post('/insert_batch','batch_insert')->name('batch_name_insert');
     Route::Post('/insert_student','insert_student_information')->name('insert_student');
+    Route::Post('/insert_fees_manage','insert_fees_manage')->name('fees_manage');
     
     //update route
     Route::Post('/update_class_name/{id}','update_class_name')->name('update_class');
