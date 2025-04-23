@@ -19,6 +19,7 @@ return new class extends Migration
             $table->string('batch_class');
             $table->string('amount');
             $table->string('select_month');
+            $table->string('status')->default('active');
             $table->timestamps();
         });
     }

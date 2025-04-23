@@ -11,9 +11,13 @@ Route::get('/', function () {
 })->name('home');
 
 
-Route::get('/create-fee', function () {
-    return view('create_fee',['view_class' => add_class::all(),'view_batch' => add_batch::all()]);
-})->name('create_fee');
+// Route::get('/collect_fees', function(){
+//     return view('create_fee_management');
+// })->name('create_fee_management');
+
+
+Route::get('/collect_fees',[ClassesController::class,'view_data'])->name('create_fee_management');
+Route::post('/collect_fees',[ClassesController::class,'view_data'])->name('view_fee_management');
 
 Route::get('/blank_page', function () {
     return view('blank');
@@ -27,6 +31,7 @@ Route::controller(ClassesController::class)->group(function(){
     Route::GET('/student','student_view')->name('student_info');
     Route::GET('/addclasses','class_view')->name('add_class');
     Route::GET('/addbatches', 'batch_view')->name('add_batch');
+    Route::GET('/view-fees-management', 'fees_management')->name('create_fee');
 
 
 

@@ -11,8 +11,13 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('fees_management', function (Blueprint $table) {
+        Schema::create('collection_fees', function (Blueprint $table) {
             $table->id();
+            $table->integer('student_id');
+            $table->string('fees_month');
+            $table->string('payable_month');
+            $table->string('paid')->nullable();
+            $table->string('status')->default('Due');
             $table->timestamps();
         });
     }
@@ -22,6 +27,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('fees_management');
+        Schema::dropIfExists('collection_fees');
     }
 };

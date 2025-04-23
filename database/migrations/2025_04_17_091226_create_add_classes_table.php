@@ -13,6 +13,8 @@ return new class extends Migration
     {
         Schema::create('add_classes', function (Blueprint $table) {
             $table->id();
+            $table->string('c_name');
+            $table->string('status')->default('active');
             $table->timestamps();
         });
     }

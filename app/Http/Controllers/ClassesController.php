@@ -21,7 +21,7 @@ class ClassesController extends Controller
         $class_name =  $request->class_name;
         $branch_name =  $request->branch_name;
         $amount =  $request->amount;
-        $string = $request->ary;
+        $string = $request->month;
         foreach($string as $s){
             $fee = DB::table('fees')
             ->insert([
@@ -30,9 +30,14 @@ class ClassesController extends Controller
                 'select_class' => $class_name,
                 'batch_class' => $branch_name,
                 'amount' => $amount,
-                'select_month' =>$s]);
+                'select_month' =>$s,
+                'created_at' => now(),
+                'updated_at' =>now(),
+            ]);
 
         }
+        return redirect()->route('create_fee')->with('success','Create Fees Successfully!');
+
     }
 
     public function insert_student_information(Request $request) {
@@ -43,7 +48,7 @@ class ClassesController extends Controller
             'phone_number' => 'required',
             'class_name' => 'required',
             'branch_name' => 'required',
-            'roll_number' => 'required',
+            'roll_number' => 'required|unique:posts',
             'f_name' => 'required',
             'm_name' => 'required',
         ]);
@@ -144,6 +149,35 @@ class ClassesController extends Controller
         $batch_view = DB::table('add_batches')->get();
 
         return view('addbatch',['view_batch' =>$batch_view]);
+
+    }
+
+    public function fees_management(){
+        $create_fees = DB::table('fees')->get();
+        $class_list = DB::table('add_classes')->get();
+        $batch_list = DB::table('add_batches')->get();
+
+        return view('create_fee',['view_fees' => $create_fees,'view_class' => $class_list,'view_batch' => $batch_list]);
+    }
+
+    public function view_data(Request $request){
+
+        
+        
+
+        $student_list = DB::table('student_infos')->get();
+
+        $id = $request->id;
+
+        $student_fees = DB::table('fees')->get();
+
+        $student_profile = DB::table('student_infos')->where('id',$id)->get();
+
+        return view('create_fee_management',[
+            'view_student_profile' => $student_profile,
+            'view_student' => $student_list,
+            'view_student_fees' => $student_fees
+        ]);
 
     }
 

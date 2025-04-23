@@ -12,7 +12,7 @@
         <p class="text-success">{{ session('success') }}</p>
         
     @endif
-    <h5>Add Student</h5>
+    <h5>Add Fees Management</h5>
 
     <form method="POST" action="{{route('fees_manage')}}">
         @csrf
@@ -72,26 +72,75 @@
                 @error('amount')
                     <p class="text-danger">{{$message}}</p>
                 @enderror
-            </div>
-            <div class="form-group col-md-6 p-2">
-                <label for="exampleInputEmail2">Select Month</label>
-                <select class="form-control" name="ary[]" multiple="multiple">
-                    <option value="Option 1">Option 1</option>
-                    <option value="Option 2">Option 2</option>
-                    <option value="Option 3">Option 3</option>
-                    <option value="Option 4">Option 4</option>
-                    <option value="Option 5">Option 5</option>
-                </select>
+                <div style="margin-top: 20px">
+                    <input type="submit" class="btn btn-success" value="Submit">
+                </div>
             </div>
             
+            <div class="form-group col-md-6 p-2">
+                <label for="exampleInputEmail2">Select Month</label>
+                <select class="form-control" name="month[]" multiple="multiple" >
+                    <option value="">all</option>
+                    <option value="January">January</option>
+                    <option value="February">February</option>
+                    <option value="March">March</option>
+                    <option value="April">April</option>
+                    <option value="May">May</option>
+                    <option value="June">June</option>
+                    <option value="July">July</option>
+                    <option value="August">August</option>
+                    <option value="September">September</option>
+                    <option value="October">October</option>
+                    <option value="November">November</option>
+                    <option value="December">December</option>
+
+                </select>
+            </div>
+
+            
         </div>
-        <div>
-            <input type="submit" class="btn btn-success" value="Submit">
-        </div>
+       
 
     </form>
    
     
+</div>
+
+<div class="container-fluid">
+    <table class="table mt-5">
+        <thead class="table-dark">
+          <tr>
+            <th scope="col">ID</th>
+            <th scope="col">Fees Head</th>
+            <th scope="col">Fees Type</th>
+            <th scope="col">Class</th>
+            <th scope="col">Batch</th>
+            <th scope="col">Amount</th>
+            <th scope="col">Month</th>
+            <th scope="col">Status</th>
+            <th scope="col">Edit</th>
+          </tr>
+        </thead>
+        <tbody class="table-group-divider">
+          
+            @foreach ($view_fees as $view_table)
+            <tr>
+              <th scope="row">{{$view_table->id}}</th>
+              <td>{{$view_table->fees_head }}</td>
+              <td>{{$view_table->fees_type}}</td>
+              <td>{{$view_table->select_class}}</td>
+              <td>{{$view_table->batch_class}}</td>
+              <td>{{$view_table->amount}}</td>
+              <td>{{$view_table->select_month}}</td>
+              <td>{{$view_table->status}}</td>
+              <td>
+                <a href="" class="btn btn-danger"> Delete</a>
+                <a href="" class="btn btn-info">Edit</a>
+              </td>
+            </tr>
+            @endforeach
+        </tbody>
+    </table>
 </div>
 
 @endsection
