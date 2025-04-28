@@ -43,13 +43,14 @@
 
         <div class="card mt-2 col-md-6 p-2">
             <div class="card-body">
-              <h5 class="card-title">Student Namr: {{$profile->s_name}}</h5>
+              <h5 class="card-title">Id: {{$profile->id}}</h5>
+              <h5 class="card-title">Student Name: {{$profile->s_name}}</h5>
               <h5 class="card-title">Class: {{$profile->class_name}}</h5>
               <h5 class="card-title">Batch: {{$profile->batch_name}}</h5>
               <h5 class="card-title">Roll: {{$profile->roll}}</h5>
             </div>
-          </div>
-          <div class="container-fluid">
+        </div>
+        <div class="container-fluid">
             <table class="table mt-5">
                 <thead class="table-dark">
                   <tr>
@@ -63,27 +64,33 @@
                     <th scope="col">Due</th>
                   </tr>
                 </thead>
-                
+               
                 @foreach ($view_student_fees as  $view_fees)
-                   @if ($profile->class_name == $view_fees->select_class)
-                       
-                   
-                    <tbody class="table-group-divider">
-                    
-                    <tr>
-                        <th>{{$view_fees->id}}</th>
-                        <td>{{$view_fees->fees_head}}</td>
-                        <td>{{$view_fees->select_month}}</td>
-                        <td>{{$view_fees->fees_type}}</td>
-                        <td>{{$view_fees->select_class}}</td>
-                        <td>{{$view_fees->batch_class}}</td>
-                        <td>{{$view_fees->amount}}</td>
-                        <td>{{$view_fees->status}}</td>
-                    </tr>
-                    @endif 
-                  @endforeach
-                   
-                </tbody>
+
+                    @foreach ($view_student_months_due as $Months)
+                        @if ($Months->format('F') == $view_fees->select_month)
+                            @if ($profile->class_name == $view_fees->select_class)
+
+
+                                <tbody class="table-group-divider">
+                                
+                                    <tr>
+                                        <th>{{$view_fees->id}}</th>
+                                        <td>{{$view_fees->fees_head}}</td>
+                                        <td>{{$view_fees->select_month}}</td>
+                                        <td>{{$view_fees->fees_type}}</td>
+                                        <td>{{$view_fees->select_class}}</td>
+                                        <td>{{$view_fees->batch_class}}</td>
+                                        <td>{{$view_fees->amount}}</td>
+                                        <td>{{$view_fees->status}}</td>
+                                    </tr>
+                                
+                            
+                                </tbody>
+                            @endif
+                        @endif
+                    @endforeach
+                @endforeach
             </table>
         </div>
                 

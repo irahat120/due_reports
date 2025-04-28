@@ -18,10 +18,11 @@ Route::get('/', function () {
 
 Route::get('/collect_fees',[ClassesController::class,'view_data'])->name('create_fee_management');
 Route::post('/collect_fees',[ClassesController::class,'view_data'])->name('view_fee_management');
+Route::get('/blank_page',[ClassesController::class,'blank_page_test'])->name('blank');
 
-Route::get('/blank_page', function () {
-    return view('blank');
-})->name('blank');
+// Route::get('/blank_page', function () {
+//     return view('blank');
+// })->name('blank');
 
 
 

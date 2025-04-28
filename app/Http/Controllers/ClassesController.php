@@ -8,7 +8,10 @@ use App\Models\fees_manage;
 use App\Models\student_info;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Carbon\Carbon;
+use Carbon\CarbonPeriod;
 class ClassesController extends Controller
+
 {
 
     //Insert function start------------------------------------------
@@ -162,18 +165,25 @@ class ClassesController extends Controller
 
     public function view_data(Request $request){
 
-        
-        
 
         $student_list = DB::table('student_infos')->get();
 
         $id = $request->id;
 
         $student_fees = DB::table('fees')->get();
+        $start = 'January';
+        $end = Carbon::Now();
+        $months = CarbonPeriod::create($start, '1 month', $end);
 
         $student_profile = DB::table('student_infos')->where('id',$id)->get();
 
+        $student_Due_list = DB::table('collection_fees')->Where('student_id',$id)->Where('status','=','Paid')->get();
+
+        
+
         return view('create_fee_management',[
+            'view_student_months_due' => $months,
+            'view_student_Due_list' => $student_Due_list,
             'view_student_profile' => $student_profile,
             'view_student' => $student_list,
             'view_student_fees' => $student_fees
@@ -184,6 +194,33 @@ class ClassesController extends Controller
 
 
     //View function ends------------------------------------------
+
+
+
+
+
+
+
+    //view test
+
+
+    public function blank_page_test(){
+
+        // Set start and end dates
+            $start = 'January';
+            $end = Carbon::Now();
+
+            // Create a CarbonPeriod by month interval
+            $months = CarbonPeriod::create($start, '1 month', $end);
+
+            foreach ($months as $month) {
+
+                echo $month->format('F Y') . "</br>";
+            }
+
+
+        // return view('blank');
+    }
 
 
 }
